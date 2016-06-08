@@ -16,3 +16,7 @@ sed -i 's/Processing3EclipseTemplate/'$1'/g' $PROJECT_PATH/.project
 echo "Reinitializing Git"
 rm -Rf .git
 git init
+
+# Cleanup
+rm $PROJECT_PATH/readme.sh
+rm -- $0
