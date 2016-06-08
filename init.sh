@@ -18,5 +18,5 @@ rm -Rf .git
 git init
 
 # Cleanup
-rm $PROJECT_PATH/readme.sh
+rm $PROJECT_PATH/readme.md
 rm -- $0
