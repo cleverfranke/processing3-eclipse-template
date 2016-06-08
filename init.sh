@@ -7,9 +7,12 @@ if [ $# -eq 0 ]
     exit 1
 fi
 
+PROJECT_PATH=$( cd "$(dirname "${BASH_SOURCE}")" ; pwd -P )
+
 # Replace project name
-sed -i 's/Processing3EclipseTemplate/'$1'/g' .project
+sed -i 's/Processing3EclipseTemplate/'$1'/g' $PROJECT_PATH/.project
 
 # Reinitialize git
 echo "Reinitializing Git"
 rm -Rf .git
+git init
