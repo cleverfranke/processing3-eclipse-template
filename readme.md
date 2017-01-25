@@ -6,7 +6,7 @@ Small template to get Processing 3 quickly up and running in Eclipse
 To use:
 
 ```bash
-$ git clone git@bitbucket.org:cleverfranke/processing3eclipsetemplate.git target_directory 
+$ git clone git@github.com:cleverfranke/processing3-eclipse-template.git target_directory 
 $ cd target_directory
 $ chmod +x init.sh && sh init.sh ProjectName
 ```
