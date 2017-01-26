@@ -1,7 +1,9 @@
 Processing 3 Eclipse template
 -----------------------------
 
-Small template to get Processing 3 quickly up and running in Eclipse
+Small template to get Processing 3 quickly up and running in Eclipse. It has color utilities to 
+make color use in Eclipse better and extended support for PDF printing (blend modes, default
+paper sizes).
 
 To use:
 
