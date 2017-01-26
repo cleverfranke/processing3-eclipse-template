@@ -98,6 +98,66 @@ public class Pdf extends PGraphicsJava2D {
 	}
 	
 	/**
+	 * Set fill color by CMYK
+	 * 
+	 * @param c
+	 * @param m
+	 * @param y
+	 * @param k
+	 */
+	public void fillCMYK(float c, float m, float y, float k) {
+		fillColorObject = new CMYKColor(c, m, y, k);
+		fill = true;
+	}
+	
+	/**
+	 * Set stroke color by CMYK
+	 * 
+	 * @param c
+	 * @param m
+	 * @param y
+	 * @param k
+	 */
+	public void strokeCMYK(float c, float m, float y, float k) {
+		strokeColorObject = new CMYKColor(c, m, y, k);
+		stroke = true;
+	}
+	
+	/**
+	 * Set fill color as Spot
+	 * 
+	 * @param spotColorName
+	 * @param opacity
+	 * @param c
+	 * @param m
+	 * @param y
+	 * @param k
+	 */
+	public void fillSpot(String spotColorName, float opacity, float c, float m, float y, float k) {
+		CMYKColor color = new CMYKColor(c, m, y, k);
+		PdfSpotColor psc = new PdfSpotColor(spotColorName, opacity, color);
+		fillColorObject = new SpotColor(psc);
+		fill = true;
+	}
+	
+	/**
+	 * Set stroke color as Spot
+	 * 
+	 * @param spotColorName
+	 * @param opacity
+	 * @param c
+	 * @param m
+	 * @param y
+	 * @param k
+	 */
+	public void strokeSpot(String spotColorName, float opacity, float c, float m, float y, float k) {
+		CMYKColor color = new CMYKColor(c, m, y, k);
+		PdfSpotColor psc = new PdfSpotColor(spotColorName, opacity, color);
+		strokeColorObject = new SpotColor(psc);
+		stroke = true;
+	}
+	
+	/**
 	 * Set blend mode for the fill
 	 * 
 	 * @param mode
@@ -137,6 +197,25 @@ public class Pdf extends PGraphicsJava2D {
 	 */
 	public void setStrokeBlendMode(BlendMode mode) {
 		setStrokeBlendMode(mode, 1f);
+	}
+	
+	/**
+	 * Enable or disable overprinting
+	 * 
+	 * @param useOverPrint
+	 */
+	public void overPrint(boolean useOverPrint) {
+		PdfGState gs = new PdfGState();
+		if (useOverPrint) {
+			gs.setOverPrintMode(1);
+			gs.setOverPrintNonStroking(true);
+			gs.setOverPrintStroking(true);
+		} else {
+			gs.setOverPrintMode(0);
+			gs.setOverPrintNonStroking(false);
+			gs.setOverPrintStroking(false);
+		}
+		content.setGState(gs);
 	}
 	
 	/**

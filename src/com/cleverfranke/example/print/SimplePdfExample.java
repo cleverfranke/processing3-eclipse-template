@@ -5,7 +5,7 @@ import com.cleverfranke.util.print.*;
 
 import processing.core.PApplet;
 
-public class SimplePdf extends PApplet {
+public class SimplePdfExample extends PApplet {
 	
 	public void setup() { 
 
@@ -34,7 +34,7 @@ public class SimplePdf extends PApplet {
 	}
 	
 	public static void main(String[] args) {
-		PApplet.main(SimplePdf.class.getName());
+		PApplet.main(SimplePdfExample.class.getName());
 	}
 	
 }

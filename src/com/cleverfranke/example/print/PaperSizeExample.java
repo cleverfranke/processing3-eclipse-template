@@ -5,7 +5,7 @@ import com.cleverfranke.util.print.*;
 
 import processing.core.PApplet;
 
-public class PaperSizePdf extends PApplet {
+public class PaperSizeExample extends PApplet {
 	
 	public void setup() {
 
@@ -34,7 +34,7 @@ public class PaperSizePdf extends PApplet {
 	}
 	
 	public static void main(String[] args) {
-		PApplet.main(PaperSizePdf.class.getName());
+		PApplet.main(PaperSizeExample.class.getName());
 	}
 	
 }

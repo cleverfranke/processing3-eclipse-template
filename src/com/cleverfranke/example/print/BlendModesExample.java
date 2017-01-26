@@ -5,7 +5,7 @@ import com.cleverfranke.util.print.*;
 
 import processing.core.PApplet;
 
-public class BlendModes extends PApplet {
+public class BlendModesExample extends PApplet {
 	
 	public void setup() {
 
@@ -58,6 +58,6 @@ public class BlendModes extends PApplet {
 	}
 	
 	public static void main(String[] args) {
-		PApplet.main(BlendModes.class.getName());
+		PApplet.main(BlendModesExample.class.getName());
 	}
 }
