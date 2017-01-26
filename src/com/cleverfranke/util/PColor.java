@@ -1,4 +1,4 @@
-package util;
+package com.cleverfranke.util;
 
 /**
  * Class to statically create Processing compatible colors without
