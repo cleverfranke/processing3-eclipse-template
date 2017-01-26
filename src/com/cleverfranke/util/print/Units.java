@@ -16,7 +16,7 @@ public class Units {
 	 * @return
 	 */
 	public static float mmToPt(float mm) {
-		return mm * MM_PER_PT; 
+		return mm / MM_PER_PT; 
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public class Units {
 	 * @return
 	 */
 	public static float ptToMm(float pt) {
-		return pt / MM_PER_PT;
+		return pt * MM_PER_PT;
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class Units {
 	 * @return
 	 */
 	public static float inchToPt(float inch) {
-		return inch * INCH_PER_PT;
+		return inch / INCH_PER_PT;
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class Units {
 	 * @return
 	 */
 	public static float ptToInch(float pt) {
-		return pt / INCH_PER_PT;
+		return pt * INCH_PER_PT;
 	}
 
 }
