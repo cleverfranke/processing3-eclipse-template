@@ -38,6 +38,7 @@ git init $TARGET_DIR
 echo "> Cleaning up..."
 rm $TMP_ARCHIVE
 rm $TARGET_DIR/readme.md
+rm $TARGET_DIR/setup.sh
 rm -- $0
 
 echo "Done, to start using this template, in the Eclipse project explorer choose 'File' > 'Import' > 'Existing projects into Workspace' and then select '$TARGET_DIR'"
