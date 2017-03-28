@@ -1,15 +1,18 @@
 Processing 3 Eclipse template
 -----------------------------
 
-Small template to get Processing 3 quickly up and running in Eclipse
+Small template to get Processing 3 quickly up and running in Eclipse, with some convenience
+classes and examples
 
-To use:
+
+# Quick install 
+
+*(Requires bash, git, wget and unzip)*
 
 ```bash
-$ git clone git@github.com:cleverfranke/processing3-eclipse-template.git target_directory 
-$ cd target_directory
-$ chmod +x init.sh && sh init.sh ProjectName
+$ wget -q https://raw.githubusercontent.com/cleverfranke/processing3-eclipse-template/feature/simple-setup/setup.sh && bash setup.sh MyProjectName my-project-dir 
 ```
 
 Then from Eclipse choose File > Import > Existing projects into Workspace and
-select target_directory
+select my-project-dir
+
