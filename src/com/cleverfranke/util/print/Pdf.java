@@ -50,6 +50,7 @@ public class Pdf extends PGraphicsJava2D {
 		setParent(applet);
 		setSize(width, height);
 		setPath(outputFile);
+		textMode(PConstants.SHAPE);
 	}
 	
 	public static Pdf createPdf(PApplet applet, PaperSize size, boolean portrait, String outputFile) {
@@ -703,7 +704,7 @@ public class Pdf extends PGraphicsJava2D {
 		}
 		return fontList;
 	}
-
+	
 	/**
 	 * Throw RuntimeException for the a non-implemented function
 	 * @param function
