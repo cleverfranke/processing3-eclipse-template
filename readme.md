@@ -12,7 +12,7 @@ classes and examples
 $ wget -q https://raw.githubusercontent.com/cleverfranke/processing3-eclipse-template/feature/simple-setup/setup.sh && bash setup.sh MyProjectName my-project-dir 
 ```
 
-Then from Eclipse choose File > Import > Existing projects into Workspace and
+Then from Eclipse choose 'File' > 'Import' > 'Existing projects into Workspace' and
 select my-project-dir
 
 
@@ -21,5 +21,5 @@ select my-project-dir
 * Clone or download the source
 * Change 'Processing3EclipseTemplate' in .project to your desired project name
 * Initialize new git (if you want to)
-* Then from Eclipse choose File > Import > Existing projects into Workspace and select my-project-dir
+* Then from Eclipse choose 'File' > 'Import' > 'Existing projects into Workspace' and select my-project-dir
 
