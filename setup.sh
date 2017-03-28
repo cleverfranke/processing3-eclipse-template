@@ -21,9 +21,6 @@ TMP_ARCHIVE=$TMP_DIR.zip
 TARGET_DIR=$(get_abs_filename $2)
 PROJECT_NAME=$1
 
-echo $TARGET_DIR
-exit 0
-
 # Download template archive to tmp and unpack to target dir
 echo "> Downloading and extracting template..."
 wget -q -O $TMP_ARCHIVE $SOURCE_ARCHIVE
