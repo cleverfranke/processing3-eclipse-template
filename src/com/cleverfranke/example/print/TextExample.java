@@ -1,6 +1,7 @@
 package com.cleverfranke.example.print;
 
 import com.cleverfranke.util.FileSystem;
+import com.cleverfranke.util.print.PaperSize;
 import com.cleverfranke.util.print.Pdf;
 
 import processing.core.PApplet;
@@ -13,8 +14,8 @@ public class TextExample extends PApplet {
 		String pdfPath = FileSystem.getApplicationPath("output/text.pdf");
 		System.out.println("Printing to " + pdfPath);
 
-		// Create PDF object (300x100 points)
-		Pdf pdf = new Pdf(this, 300, 100, pdfPath);
+		// Create PDF object A4
+		Pdf pdf = Pdf.createPdf(this, PaperSize.A4, true, pdfPath);
 		pdf.beginDraw();
 		
 		// The font "andalemo.ttf" must be located in the 
