@@ -50,7 +50,6 @@ public class Pdf extends PGraphicsJava2D {
 		setParent(applet);
 		setSize(width, height);
 		setPath(outputFile);
-		textMode(PConstants.SHAPE);
 	}
 	
 	public static Pdf createPdf(PApplet applet, PaperSize size, boolean portrait, String outputFile) {
@@ -509,6 +508,9 @@ public class Pdf extends PGraphicsJava2D {
 	 * be called <EM>before</EM> any other commands that set the fill()
 	 * or the textFont() or anything. Unlike other renderers,
 	 * use textMode() directly after the size() command.
+	 * 
+	 * SHAPE = outlines, MODEL = editable text
+	 * 
 	 */
 	public void textMode(int mode) {
 		if (textMode != mode) {
