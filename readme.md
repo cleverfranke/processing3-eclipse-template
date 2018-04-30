@@ -24,3 +24,27 @@ select my-project-dir
 * Initialize new git (if you want to)
 * Then from Eclipse choose 'File' > 'Import' > 'Existing projects into Workspace' and select my-project-dir
 
+### Libraries
+
+These libraries are currently supplied in this structure. Below gives specific
+information on the versions and what additional arguments might need to be supplied 
+to use them with a runnable jar.
+
+#### Processing core libraries
+
+Version: 3.3.7  
+Website: http://processing.org
+
+* core
+* dxf
+* net
+* pdf
+* serial
+* svg
+
+#### Contributed libraries
+
+##### Video (/lib/processing)
+
+Version: 1.0.1  
+Website: https://processing.org/reference/libraries/video/index.html
