@@ -16,7 +16,7 @@
 	<target name="compile-jar" depends="clean">
 
 		<!-- Basic example -->
-		<jar destfile="${dir.dist}/basic-example.jar" filesetmanifest="mergewithoutmain">
+		<jar destfile="${dir.dist}/BasicExample.jar" filesetmanifest="mergewithoutmain">
 			<manifest>
 				<attribute name="Main-Class" value="com.cleverfranke.example.BasicExample" />
 				<attribute name="Class-Path" value="." />
@@ -44,9 +44,37 @@
 		</jar>
 
 		<!-- Video example -->
-		<jar destfile="${dir.dist}/video-example.jar" filesetmanifest="mergewithoutmain">
+		<jar destfile="${dir.dist}/VideoExample.jar" filesetmanifest="mergewithoutmain">
 			<manifest>
 				<attribute name="Main-Class" value="com.cleverfranke.example.VideoExample" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset dir="${dir.buildfile}/bin" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/core.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/dxf/dxf.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/net/net.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/itext.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/pdf.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/jssc.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/serial.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-awt-util-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-dom-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-ext-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-svggen-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-util-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-xml-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/svg.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/gstreamer-java.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/jna.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/video.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all.jar" />
+		</jar>
+
+		<!-- Serial example -->
+		<jar destfile="${dir.dist}/SerialExample.jar" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Main-Class" value="com.cleverfranke.example.SerialExample" />
 				<attribute name="Class-Path" value="." />
 			</manifest>
 			<fileset dir="${dir.buildfile}/bin" />
@@ -94,17 +122,17 @@
 		<copy todir="${dir.dist}/data">
 			<fileset dir="data" />
 		</copy>
-		
-        <!-- Write run.bat -->
-        <echo file="${dir.dist}/run.bat">@echo off
+
+		<!-- Write run.bat -->
+		<echo file="${dir.dist}/run.bat">@echo off
 java -jar -Dgstreamer.library.path="lib\processing\video\windows64" -Dgstreamer.plugin.path="lib\processing\video\windows64\plugins" %1
 </echo>
 
-        <!-- Write run.sh -->
-        <echo file="${dir.dist}/run.sh">#!/bin/sh
+		<!-- Write run.sh -->
+		<echo file="${dir.dist}/run.sh">#!/bin/sh
 java -jar -Dgstreamer.library.path="lib/processing/video/macosx64" -Dgstreamer.plugin.path="lib/processing/video/macosx64/plugins" $$1
 </echo>
-		
+
 		<!-- Write readme -->
 		<echo file="${dir.dist}/readme.md">
 To run the example (with the correct native paths, do the following:
