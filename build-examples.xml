@@ -111,13 +111,6 @@
 			</fileset>
 		</copy>
 
-		<!-- Add the native serial libraries -->
-		<copy todir="${dir.dist}/lib/processing/serial">
-			<fileset dir="lib/processing/serial">
-				<filename name="**/*.jar*" negate="true" />
-			</fileset>
-		</copy>
-
 		<!-- Copy data folder -->
 		<copy todir="${dir.dist}/data">
 			<fileset dir="data" />
