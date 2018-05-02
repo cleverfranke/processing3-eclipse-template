@@ -16,7 +16,8 @@ public class VideoExample extends PApplet {
 
 	@Override
 	public void setup() {
-		movie = new Movie(this, FileSystem.getApplicationPath("resources/transit.mov"));
+		String movieFile = FileSystem.getApplicationPath("data/examples/transit.mov");
+		movie = new Movie(this, movieFile);
 		movie.loop();
 	}
 
