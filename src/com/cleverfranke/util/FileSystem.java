@@ -5,26 +5,26 @@ import java.io.File;
 public class FileSystem {
 	
 	/**
-	 * Fetch path relative to the application path. Does not give any guarantees
-	 * whether the requested path exists 
+	 * Fetch absolute path to a file or directory relative to the application path. Does not check whether the 
+	 * requested path exists 
 	 * 
-	 * @param subPath
-	 * @return
+	 * @param path relative to the project directory or executable JAR (starting with file separator)
+	 * @return absolute path to the requested subpath
 	 */
 	public static String getApplicationPath(String subPath) {
-		ClassLoader cl = FileSystem.class.getClassLoader();
-		String applicationPath = new File(cl.getResource("").getPath()).getParent();
+		
+		String applicationPath = new File("").getAbsolutePath();
 		
 		if (subPath.isEmpty()) {
 			return applicationPath;
 		} else {
-			return applicationPath + File.separator + subPath;
+			return new File(applicationPath + File.separator + subPath).getAbsolutePath();
 		}
 		
 	}
 	
 	/**
-	 * Fetch root application path
+	 * Fetch root application path (e.g. path to the
 	 * 
 	 * @return
 	 */
