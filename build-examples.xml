@@ -111,6 +111,13 @@
 			</fileset>
 		</copy>
 
+		<!-- Add the native serial libraries (only needed for OSX) -->
+		<copy todir="${dir.dist}/lib/processing/serial">
+			<fileset dir="lib/processing/serial">
+				<filename name="**/*.jar*" negate="true" />
+			</fileset>
+		</copy>
+
 		<!-- Copy data folder -->
 		<copy todir="${dir.dist}/data">
 			<fileset dir="data" />
@@ -123,7 +130,7 @@ java -jar -Dgstreamer.library.path="lib\processing\video\windows64" -Dgstreamer.
 
 		<!-- Write run.sh -->
 		<echo file="${dir.dist}/run.sh">#!/bin/sh
-java -jar -Dgstreamer.library.path="lib/processing/video/macosx64" -Dgstreamer.plugin.path="lib/processing/video/macosx64/plugins" $$1
+java -jar -Djava.library.path="lib/processing/serial/macosx" -Dgstreamer.library.path="lib/processing/video/macosx64" -Dgstreamer.plugin.path="lib/processing/video/macosx64/plugins" $$1
 </echo>
 
 		<!-- Write readme -->
