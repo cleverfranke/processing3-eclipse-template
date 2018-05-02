@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="Build template" default="create-bundle">
+
+	<!-- Name of the main class (e.g. com.example.package.Main) -->
+	<property name="class.main" value="Main" />
+	
+	<!-- Name of the app  -->
+	<property name="target" value="MyApp" />
+	
+	<!-- Build properties you shouldn't need to change -->
+	<property name="dir.buildfile" value="." />
+	<property name="dir.dist" location="dist" />
+	<property name="dir.lib" location="lib" />
+
+	<!-- Clean / (re)create the dist folder -->
+	<target name="clean">
+		<delete dir="${dir.dist}" />
+		<mkdir dir="${dir.dist}" />
+	</target>
+
+	<!-- Compile the jar -->
+	<target name="compile-jar" depends="clean">
+		<jar destfile="${dir.dist}/${target}.jar" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Main-Class" value="${class.main}" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset dir="${dir.buildfile}/bin" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/core.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/dxf/dxf.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/net/net.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/itext.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/pdf.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/jssc.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/serial.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-awt-util-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-dom-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-ext-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-svggen-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-util-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-xml-1.8.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/svg.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/gstreamer-java.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/jna.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/video.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all.jar" />
+		</jar>
+	</target>
+
+	<!-- Create the dist bundle -->
+	<target name="create-bundle" depends="compile-jar">
+
+		<!-- Add the native video libraries -->
+		<copy todir="${dir.dist}/lib/processing/video">
+			<fileset dir="lib/processing/video">
+				<filename name="**/*.jar*" negate="true" />
+			</fileset>
+		</copy>
+
+		<!-- Add the native serial libraries -->
+		<copy todir="${dir.dist}/lib/processing/serial">
+			<fileset dir="lib/processing/serial">
+				<filename name="**/*.jar*" negate="true" />
+			</fileset>
+		</copy>
+
+		<!-- Copy data folder -->
+		<copy todir="${dir.dist}/data">
+			<fileset dir="data" />
+		</copy>
+		
+		<!-- Write run.bat -->
+		<echo file="${dir.dist}/run.bat">@echo off
+java -jar -Dgstreamer.library.path="lib\processing\video\windows64" -Dgstreamer.plugin.path="lib\processing\video/windows64\plugins ${target}.jar
+</echo>
+			
+		<!-- Write run.sh -->
+		<echo file="${dir.dist}/run.sh">#!/bin/sh
+java -jar -Dgstreamer.library.path="lib/processing/video/macosx64" -Dgstreamer.plugin.path="lib/processing/video/macosx64/plugins" ${target}.jar
+</echo>
+
+	</target>
+
+</project>
