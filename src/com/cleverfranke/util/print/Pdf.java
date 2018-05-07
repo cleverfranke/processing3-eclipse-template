@@ -3,14 +3,34 @@ package com.cleverfranke.util.print;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.io.*;
-import java.util.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
 
-import com.lowagie.text.*;
-import com.lowagie.text.pdf.*;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.pdf.CMYKColor;
+import com.lowagie.text.pdf.DefaultFontMapper;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfGState;
+import com.lowagie.text.pdf.PdfSpotColor;
+import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.SpotColor;
 
 import processing.awt.PGraphicsJava2D;
-import processing.core.*;
+import processing.core.PApplet;
+import processing.core.PConstants;
+import processing.core.PFont;
+import processing.core.PImage;
+import processing.core.PStyle;
+import processing.core.PSurface;
+import processing.core.PSurfaceNone;
 
 /**
  * Extended version of the default (thin) Processing wrapper around the 
@@ -221,6 +241,7 @@ public class Pdf extends PGraphicsJava2D {
 	/**
 	 * Start drawing
 	 */
+	@Override
 	public void beginDraw() {
 		if (document == null) {
 			document = new Document(new Rectangle(width, height));
@@ -265,6 +286,7 @@ public class Pdf extends PGraphicsJava2D {
 	/**
 	 * End drawing
 	 */
+	@Override
 	public void endDraw() {
 		// endDraw() needs to be overridden so that the endDraw() from
 		// PGraphicsJava2D is not inherited (it calls loadPixels).
@@ -444,6 +466,7 @@ public class Pdf extends PGraphicsJava2D {
 	/**
 	 * Cleanup
 	 */
+	@Override
 	public void dispose() {
 		if (document != null) {
 			g2.dispose();
@@ -473,11 +496,12 @@ public class Pdf extends PGraphicsJava2D {
 	/**
 	 * Don't open a window for this renderer, it won't be used.
 	 */
+	@Override
 	public boolean displayable() {
 		return false;
 	}
 
-	@SuppressWarnings("deprecation")
+	@Override
 	protected void imageImpl(PImage image,
 			float x1, float y1, float x2, float y2,
 			int u1, int v1, int u2, int v2) {
@@ -496,6 +520,7 @@ public class Pdf extends PGraphicsJava2D {
 		popMatrix();
 	}
 
+	@Override
 	public void textFont(PFont which) {
 		super.textFont(which);
 		checkFont();
@@ -512,6 +537,7 @@ public class Pdf extends PGraphicsJava2D {
 	 * SHAPE = outlines, MODEL = editable text
 	 * 
 	 */
+	@Override
 	public void textMode(int mode) {
 		if (textMode != mode) {
 			if (mode == SHAPE) {
@@ -533,68 +559,83 @@ public class Pdf extends PGraphicsJava2D {
 		}
 	}
 
+	@Override
 	protected void textLineImpl(char buffer[], int start, int stop,
 			float x, float y) {
 		checkFont();
 		super.textLineImpl(buffer, start, stop, x, y);
 	}
 
+	@Override
 	public void loadPixels() {
 		nope("loadPixels");
 	}
 
+	@Override
 	public void updatePixels() {
 		nope("updatePixels");
 	}
 
+	@Override
 	public void updatePixels(int x, int y, int c, int d) {
 		nope("updatePixels");
 	}
 
+	@Override
 	public int get(int x, int y) {
 		nope("get");
 		return 0;
 	}
 
+	@Override
 	public PImage get(int x, int y, int c, int d) {
 		nope("get");
 		return null;
 	}
 
+	@Override
 	public PImage get() {
 		nope("get");
 		return null;
 	}
 
+	@Override
 	public void set(int x, int y, int argb) {
 		nope("set");
 	}
 
+	@Override
 	public void set(int x, int y, PImage image) {
 		nope("set");
 	}
 
+	@Override
 	public void mask(int alpha[]) {
 		nope("mask");
 	}
 
+	@Override
 	public void mask(PImage alpha) {
 		nope("mask");
 	}
 
+	@Override
 	public void filter(int kind) {
 		nope("filter");
 	}
 
+	@Override
 	public void filter(int kind, float param) {
 		nope("filter");
 	}
 
+	@Override
 	public void copy(int sx1, int sy1, int sx2, int sy2,
 			int dx1, int dy1, int dx2, int dy2) {
 		nope("copy");
 	}
 
+	@Override
 	public void copy(PImage src,
 			int sx1, int sy1, int sx2, int sy2,
 			int dx1, int dy1, int dx2, int dy2) {
@@ -610,17 +651,20 @@ public class Pdf extends PGraphicsJava2D {
 		nope("blend");
 	}
 
+	@Override
 	public void blend(int sx1, int sy1, int sx2, int sy2,
 			int dx1, int dy1, int dx2, int dy2, int mode) {
 		nope("blend");
 	}
 
+	@Override
 	public void blend(PImage src,
 			int sx1, int sy1, int sx2, int sy2,
 			int dx1, int dy1, int dx2, int dy2, int mode) {
 		nope("blend");
 	}
 
+	@Override
 	public boolean save(String filename) {
 		nope("save");
 		return false;
