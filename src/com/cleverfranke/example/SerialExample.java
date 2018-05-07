@@ -6,10 +6,11 @@ import processing.serial.Serial;
 public class SerialExample extends PApplet {
 	
 	private Serial myPort;
+	private String receivedData = "";
 	
 	@Override
 	public void settings() {
-		size(1024, 768);
+		size(640, 480);
 	}
 	
 	@Override
@@ -30,11 +31,22 @@ public class SerialExample extends PApplet {
 	}
 	
 	@Override
-	public void draw() {}
+	public void draw() {
+		background(0);
+		text("This sketch will display the last received data from the serial port, and send all keystrokes", 40, 40);
+		text(receivedData, 40, 60, width - 80, height - 100);
+	}
 	
 	public void serialEvent(Serial myPort) {
+		
+		String incomingString = myPort.readString();
+		
 		// Print all incoming data
-		System.out.println("Read: " + myPort.readString());
+		System.out.println("Read: " + incomingString);
+		
+		// Add to display string
+		receivedData += incomingString;
+		
 	}
 	
 	@Override
