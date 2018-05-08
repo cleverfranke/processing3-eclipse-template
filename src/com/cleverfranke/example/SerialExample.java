@@ -1,5 +1,7 @@
 package com.cleverfranke.example;
 
+import com.cleverfranke.util.FileSystem;
+
 import processing.core.PApplet;
 import processing.serial.Serial;
 
@@ -11,6 +13,7 @@ public class SerialExample extends PApplet {
 	@Override
 	public void settings() {
 		size(640, 480);
+		FileSystem.setDefaultLibraryPaths();
 	}
 	
 	@Override

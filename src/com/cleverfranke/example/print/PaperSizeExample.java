@@ -1,13 +1,16 @@
 package com.cleverfranke.example.print;
 
 import com.cleverfranke.util.FileSystem;
-import com.cleverfranke.util.print.*;
+import com.cleverfranke.util.print.PaperSize;
+import com.cleverfranke.util.print.Pdf;
 
 import processing.core.PApplet;
 
 public class PaperSizeExample extends PApplet {
 	
+	@Override
 	public void setup() {
+		FileSystem.setDefaultLibraryPaths();
 
 		// Determine where to write the PDF file
 		String pdfPath = FileSystem.getApplicationPath("output/papersize.pdf");

@@ -1,13 +1,16 @@
 package com.cleverfranke.example.print;
 
 import com.cleverfranke.util.FileSystem;
-import com.cleverfranke.util.print.*;
+import com.cleverfranke.util.print.BlendMode;
+import com.cleverfranke.util.print.Pdf;
 
 import processing.core.PApplet;
 
 public class BlendModesExample extends PApplet {
 	
+	@Override
 	public void setup() {
+		FileSystem.setDefaultLibraryPaths();
 
 		// Determine where to write the PDF file
 		String pdfPath = FileSystem.getApplicationPath("output/blendmodes.pdf");

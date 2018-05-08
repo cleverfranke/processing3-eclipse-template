@@ -1,5 +1,7 @@
 package com.cleverfranke.example;
 
+import com.cleverfranke.util.FileSystem;
+
 import processing.core.PApplet;
 
 public class BasicExample extends PApplet {
@@ -10,6 +12,7 @@ public class BasicExample extends PApplet {
 	public void settings() {
 		// Add settings here
 		size(1024, 768);
+		FileSystem.setDefaultLibraryPaths();
 	}
 	
 	@Override
