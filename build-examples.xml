@@ -10,7 +10,6 @@
 	<macrodef name="compile-jar">
 		<attribute name="target" />
 		<sequential>
-			<echo>Compiling @{target}</echo>
 			<jar destfile="${dir.dist}/@{target}.jar" filesetmanifest="mergewithoutmain">
 				<manifest>
 					<attribute name="Main-Class" value="com.cleverfranke.example.@{target}" />
