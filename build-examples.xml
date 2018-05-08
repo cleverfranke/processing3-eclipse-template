@@ -6,103 +6,77 @@
 	<property name="dir.dist" location="dist" />
 	<property name="dir.lib" location="lib" />
 
+	<!-- Macro for compiling the jar for one example -->
+	<macrodef name="compile-jar">
+		<attribute name="target" />
+		<sequential>
+			<jar destfile="${dir.dist}/@{target}.jar" filesetmanifest="mergewithoutmain">
+				<manifest>
+					<attribute name="Main-Class" value="com.cleverfranke.example.@{target}" />
+					<attribute name="Class-Path" value="." />
+				</manifest>
+				<fileset dir="${dir.buildfile}/bin" />
+				<!-- Core libraries -->
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/core.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt-natives-linux-aarch64.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt-natives-linux-amd64.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt-natives-linux-armv6hf.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt-natives-linux-i586.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt-natives-macosx-universal.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt-natives-windows-amd64.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt-natives-windows-i586.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-linux-aarch64.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-linux-amd64.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-linux-armv6hf.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-linux-i586.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-macosx-universal.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-windows-amd64.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-windows-i586.jar" />
+				<!-- DXF library -->
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/dxf/dxf.jar" />
+				<!-- Net library -->
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/net/net.jar" />
+				<!-- PDF library -->
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/itext.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/pdf.jar" />
+				<!-- SVG library -->
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-awt-util-1.8.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-dom-1.8.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-ext-1.8.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-svggen-1.8.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-util-1.8.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-xml-1.8.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/svg.jar" />
+				<!-- Video library -->
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/gstreamer-java.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/jna.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/video.jar" />
+				<!-- Serial library -->
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/jssc.jar" />
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/serial.jar" />
+			</jar>
+		</sequential>
+	</macrodef>
+
 	<!-- Clean / (re)create the dist folder -->
 	<target name="clean">
 		<delete dir="${dir.dist}" />
 		<mkdir dir="${dir.dist}" />
 	</target>
 
-	<!-- Compile the jar -->
-	<target name="compile-jar" depends="clean">
-
-		<!-- Basic example -->
-		<jar destfile="${dir.dist}/BasicExample.jar" filesetmanifest="mergewithoutmain">
-			<manifest>
-				<attribute name="Main-Class" value="com.cleverfranke.example.BasicExample" />
-				<attribute name="Class-Path" value="." />
-			</manifest>
-			<fileset dir="${dir.buildfile}/bin" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/core.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/dxf/dxf.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/net/net.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/itext.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/pdf.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/jssc.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/serial.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-awt-util-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-dom-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-ext-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-svggen-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-util-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-xml-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/svg.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/gstreamer-java.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/jna.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/video.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all.jar" />
-		</jar>
-
-		<!-- Video example -->
-		<jar destfile="${dir.dist}/VideoExample.jar" filesetmanifest="mergewithoutmain">
-			<manifest>
-				<attribute name="Main-Class" value="com.cleverfranke.example.VideoExample" />
-				<attribute name="Class-Path" value="." />
-			</manifest>
-			<fileset dir="${dir.buildfile}/bin" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/core.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/dxf/dxf.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/net/net.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/itext.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/pdf.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/jssc.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/serial.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-awt-util-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-dom-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-ext-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-svggen-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-util-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-xml-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/svg.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/gstreamer-java.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/jna.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/video.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all.jar" />
-		</jar>
-
-		<!-- Serial example -->
-		<jar destfile="${dir.dist}/SerialExample.jar" filesetmanifest="mergewithoutmain">
-			<manifest>
-				<attribute name="Main-Class" value="com.cleverfranke.example.SerialExample" />
-				<attribute name="Class-Path" value="." />
-			</manifest>
-			<fileset dir="${dir.buildfile}/bin" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/core.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/dxf/dxf.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/net/net.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/itext.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/pdf.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/jssc.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/serial.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-awt-util-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-dom-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-ext-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-svggen-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-util-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-xml-1.8.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/svg.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/gstreamer-java.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/jna.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/video.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all.jar" />
-		</jar>
-
+	<!-- Compile all relevant examples -->
+	<target name="compile-jars" depends="clean">
+		<compile-jar target="BasicExample" />
+		<compile-jar target="BasicExample3D" />
+		<compile-jar target="SerialExample" />
+		<compile-jar target="SerialExample" />
+		<compile-jar target="VideoExample" />
 	</target>
 
 	<!-- Create the dist bundle -->
-	<target name="create-bundle" depends="compile-jar">
+	<target name="create-bundle" depends="compile-jars">
 
 		<!-- Add the native video libraries -->
 		<copy todir="${dir.dist}/lib/processing/video">
@@ -122,21 +96,6 @@
 		<copy todir="${dir.dist}/data">
 			<fileset dir="data" />
 		</copy>
-
-		<!-- Write readme -->
-		<echo file="${dir.dist}/readme.md">
-To run the example (with the correct native paths, do the following:
-
-**On Windows:**
-```bat
-> run.bat basic-example.jar
-```
-			
-** On macOS:**
-```sh
-$ run.sh basic-example.jar
-```
-</echo>
 
 	</target>
 
