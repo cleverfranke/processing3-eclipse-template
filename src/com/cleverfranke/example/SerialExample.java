@@ -13,7 +13,6 @@ public class SerialExample extends PApplet {
 	@Override
 	public void settings() {
 		size(640, 480);
-		FileSystem.setDefaultLibraryPaths();
 	}
 	
 	@Override
@@ -63,6 +62,7 @@ public class SerialExample extends PApplet {
 
 	public static void main(String[] args) {
 		// Program execution starts here
+		FileSystem.setDefaultLibraryPaths();
 		PApplet.main(SerialExample.class.getName());
 	}
 

@@ -12,7 +12,6 @@ public class BasicExample extends PApplet {
 	public void settings() {
 		// Add settings here
 		size(1024, 768);
-		FileSystem.setDefaultLibraryPaths();
 	}
 	
 	@Override
@@ -41,6 +40,7 @@ public class BasicExample extends PApplet {
 
 	public static void main(String[] args) {
 		// Program execution starts here
+		FileSystem.setDefaultLibraryPaths();
 		PApplet.main(BasicExample.class.getName());
 	}
 	

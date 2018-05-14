@@ -12,7 +12,6 @@ public class VideoExample extends PApplet {
 	@Override
 	public void settings() {
 		size(1024, 768);
-		FileSystem.setDefaultLibraryPaths();
 	}
 
 	@Override
@@ -34,6 +33,7 @@ public class VideoExample extends PApplet {
 
 	public static void main(String[] args) {
 		// Program execution starts here
+		FileSystem.setDefaultLibraryPaths();
 		PApplet.main(VideoExample.class.getName());
 	}
 
