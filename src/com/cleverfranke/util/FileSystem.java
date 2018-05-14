@@ -79,7 +79,7 @@ public class FileSystem {
 
 			}
 			
-			// Set java.library.path (calling System.setProperty() will not work), @see 
+			// Set java.library.path (just calling System.setProperty() will not work), @see 
 			// https://stackoverflow.com/questions/5419039/is-djava-library-path-equivalent-to-system-setpropertyjava-library-path
 			System.setProperty("java.library.path", FileSystem.getApplicationPath(javaLibraryPath));
 			Field fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
