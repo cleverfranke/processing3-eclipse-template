@@ -1,5 +1,7 @@
 package com.cleverfranke.example;
 
+import com.cleverfranke.util.FileSystem;
+
 import processing.core.PApplet;
 import processing.serial.Serial;
 
@@ -60,6 +62,7 @@ public class SerialExample extends PApplet {
 
 	public static void main(String[] args) {
 		// Program execution starts here
+		FileSystem.setDefaultLibraryPaths();
 		PApplet.main(SerialExample.class.getName());
 	}
 

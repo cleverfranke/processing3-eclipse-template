@@ -73,5 +73,5 @@ Website: https://processing.org/reference/libraries/video/index.html
 If you want to add more libraries to this template, place them in the /lib folder under the correct
 path, so /lib/processing/{libraryName} for Processing native and contributed libraries, or 
 lib/{libraryName}. Include the library in the build path and if needed (e.g. if the library requires
-native libraries) make sure the Ant build files copy the required libraries and have the run scripts
-reference them.
+native libraries) make sure the Ant build files copy the required libraries and include the new libraries
+in the FileSystem::setDefaultLibraryPaths if needed (only for libraries that have native code)

@@ -8,7 +8,9 @@ import processing.core.PApplet;
 
 public class TextExample extends PApplet {
 	
+	@Override
 	public void setup() { 
+		FileSystem.setDefaultLibraryPaths();
 		
 		// Determine where to write the PDF file
 		String pdfPath = FileSystem.getApplicationPath("output/text.pdf");

@@ -33,6 +33,7 @@ public class VideoExample extends PApplet {
 
 	public static void main(String[] args) {
 		// Program execution starts here
+		FileSystem.setDefaultLibraryPaths();
 		PApplet.main(VideoExample.class.getName());
 	}
 

@@ -1,5 +1,7 @@
 package com.cleverfranke.example;
 
+import com.cleverfranke.util.FileSystem;
+
 import processing.core.PApplet;
 
 public class BasicExample3D extends PApplet {
@@ -41,6 +43,7 @@ public class BasicExample3D extends PApplet {
 
 	public static void main(String[] args) {
 		// Program execution starts here
+		FileSystem.setDefaultLibraryPaths();
 		PApplet.main(BasicExample3D.class.getName());
 	}
 	
