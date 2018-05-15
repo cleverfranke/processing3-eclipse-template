@@ -54,19 +54,29 @@ to use them with a runnable jar.
 Version: 3.3.7  
 Website: http://processing.org
 
-* core
-* dxf
-* net
-* pdf
-* serial
-* svg
+* core 		(Core functionality)
+* dxf 		(Creating DXF files)
+* net 		(Networking)
+* pdf		(Creating PDF files)
+* serial 	(Serial communication)
+* svg		(Creating SVG files)
 
 ### Contributed libraries
 
-#### Video (/lib/processing)
+#### Video (/lib/processing/video)
+
+The Video library plays movie files and captures video data from a camera.
 
 Version: 1.0.1  
 Website: https://processing.org/reference/libraries/video/index.html
+
+#### Ani (/lib/processing/ani)
+
+A lightweight Processing library for creating animations and transitions
+by Benedikt Groﬂ.
+
+Version: 2.7
+Website: http://www.looksgood.de/libraries/Ani/
 
 ### Adding new libraries
 

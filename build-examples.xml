@@ -16,6 +16,7 @@
 					<attribute name="Class-Path" value="." />
 				</manifest>
 				<fileset dir="${dir.buildfile}/bin" />
+				
 				<!-- Core libraries -->
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/core.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/gluegen-rt.jar" />
@@ -34,13 +35,17 @@
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-macosx-universal.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-windows-amd64.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/core/jogl-all-natives-windows-i586.jar" />
+				
 				<!-- DXF library -->
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/dxf/dxf.jar" />
+				
 				<!-- Net library -->
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/net/net.jar" />
+				
 				<!-- PDF library -->
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/itext.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/pdf/pdf.jar" />
+				
 				<!-- SVG library -->
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-awt-util-1.8.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-dom-1.8.jar" />
@@ -49,13 +54,18 @@
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-util-1.8.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/batik-xml-1.8.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/svg/svg.jar" />
+				
 				<!-- Video library -->
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/gstreamer-java.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/jna.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/video/video.jar" />
+				
 				<!-- Serial library -->
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/jssc.jar" />
 				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/serial/serial.jar" />
+				
+				<!-- Ani library -->
+				<zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/lib/processing/ani/Ani.jar" />
 			</jar>
 		</sequential>
 	</macrodef>
@@ -73,6 +83,7 @@
 		<compile-jar target="SerialExample" />
 		<compile-jar target="SerialExample" />
 		<compile-jar target="VideoExample" />
+		<compile-jar target="AniExample" />
 	</target>
 
 	<!-- Create the dist bundle -->
@@ -85,7 +96,7 @@
 			</fileset>
 		</copy>
 
-		<!-- Add the native serial libraries (only needed for OSX) -->
+		<!-- Add the native serial libraries -->
 		<copy todir="${dir.dist}/lib/processing/serial">
 			<fileset dir="lib/processing/serial">
 				<filename name="**/*.jar*" negate="true" />

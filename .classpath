@@ -36,5 +36,6 @@
 	<classpathentry kind="lib" path="lib/processing/core/jogl-all-natives-macosx-universal.jar"/>
 	<classpathentry kind="lib" path="lib/processing/core/jogl-all-natives-windows-amd64.jar"/>
 	<classpathentry kind="lib" path="lib/processing/core/jogl-all-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="lib/processing/ani/Ani.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
