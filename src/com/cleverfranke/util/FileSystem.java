@@ -2,6 +2,7 @@ package com.cleverfranke.util;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.Locale;
 
 import com.cleverfranke.util.FileSystem.SystemHelper.Architecture;
@@ -35,6 +36,27 @@ public class FileSystem {
 	public static String getApplicationPath() {
 		return getApplicationPath("");
 	}
+	
+	/**
+	 * Get the path to a compiled resource that works both in a runnable jar as when running from an IDE
+	 * 
+	 * @param resourcePath the path to the resource (i.e. com/cleverfranke/example/resource/image.png)
+	 * @return
+	 */
+	public String getCompiledResource(String resourcePath) {
+				
+		URL url = getClass().getClassLoader().getResource(resourcePath);
+		if (url == null) {
+			return null;
+		} else if (url.toString().startsWith("jar:")) {
+			// Run from jar: Return path in jar
+			return url.toString();
+		} else {
+			// Return file path
+			return url.getFile().toString();
+		}
+		
+ 	}
 	
 	/**
 	 * Set the library paths to the default locations (/lib/{libraryName})
