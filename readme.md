@@ -2,8 +2,8 @@
 
 Small template to get Processing 3 quickly up and running in Eclipse. It has:
 * utilities for color management in Eclipse
-* extended support for PDF printing (blend modes, default paper sizes).
-
+* support for compiled resources
+* extended support for PDF printing (blend modes, default paper sizes)
 
 ## Quick install of project
 
